@@ -1,11 +1,15 @@
 import {useState} from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './ContactForm.module.css';
-// import { Formik } from "formik";
+import { addTodo} from '../../redux/todosSlice'
+import { useDispatch } from 'react-redux';
+import { nanoid } from "@reduxjs/toolkit";
 
-export const ContactForm = ({onSubmit}) => {
+
+export const ContactForm = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+    const dispatch = useDispatch();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -24,13 +28,18 @@ export const ContactForm = ({onSubmit}) => {
         }
   
       };
-    
-   
-
-
-    const handleSubmit = e => {
+       const handleSubmit = e => {
         e.preventDefault();
-        onSubmit(name, number);
+
+        const contact = {
+          id:nanoid(),
+          name: name,
+          number: number,
+        };
+        // const action = addTodo(contact);
+        dispatch(addTodo(contact));
+        // console.log(action);
+        // onSubmit(name, number);
         setName('');
         setNumber('');
        
@@ -67,8 +76,8 @@ export const ContactForm = ({onSubmit}) => {
 
 }
 
-ContactForm.prototypes = {
-    name: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-  };
+// ContactForm.prototypes = {
+//     name: PropTypes.string.isRequired,
+//     number: PropTypes.number.isRequired,
+//     onSubmit: PropTypes.func.isRequired,
+//   };
