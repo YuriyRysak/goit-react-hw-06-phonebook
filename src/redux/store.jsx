@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { todoSlice } from './todosSlice';
+import { contactSlice } from './contactsSlice';
 import { filterSlice } from './filterSlice';
 import {
   persistStore,
@@ -19,11 +19,11 @@ const persistConfig = {
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig, todoSlice.reducer)
+const persistedReducer = persistReducer(persistConfig, contactSlice.reducer)
 
 export const store = configureStore({
   reducer: {
-   todos: persistedReducer,
+   contacts: persistedReducer,
    filter: filterSlice.reducer,
   },
 

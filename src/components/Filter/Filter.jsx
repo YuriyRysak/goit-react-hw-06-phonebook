@@ -12,8 +12,6 @@ export const Filter = () => {
     Find contacts by name:
     <input
       type="text"
-      
-      // value={filter}
       onChange={event => dispatch(setFilter(event.target.value))}
       placeholder="Find contacts by name"
     />
